@@ -1,6 +1,8 @@
 package com.all.dao;
 
 import com.all.domain.Movie;
+import com.all.domain.User;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.jupiter.api.Test;
@@ -9,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootTest
 public class MovieDaoTestCase {
@@ -51,11 +54,22 @@ public class MovieDaoTestCase {
     }
     @Test
     void testGetPage() {
-        IPage page = new Page(1, 5);
+        IPage<Movie> page = new Page(1, 5);
 
         movieDao.selectPage(page,null);
         System.out.println(page.getPages());
+    }
+    @Test
+    void ContextLoads() {
 
+        QueryWrapper<Movie> qw = new QueryWrapper<>();
+//        gt:大于 lt:小于 ge:大等 le:小等
+        qw.le("score",9);
+        qw.orderByAsc("score");
+        List<Movie> movies = movieDao.selectList(qw);
+//        for(Movie movie:movies) {
+//            System.out.println(movie);
+//        }
 
     }
 }
