@@ -3,11 +3,13 @@ package com.all.controller;
 import com.all.controller.utils.Result;
 import com.all.domain.Movie;
 import com.all.service.MovieService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/movie/api/v1")
@@ -50,4 +52,15 @@ public class MovieController {
         }
         return new Result(true,page);
     }
+    //这里想做按条件排序
+    @GetMapping("/orderBy/upgrade/queryColumnName/{queryColumnName}/val/{val}/columnName/{columnName}")
+    public Result orderByUP(@PathVariable String queryColumnName,@PathVariable double val,@PathVariable String columnName) {
+        return new Result(true,movieService.orderByUP(queryColumnName,val,columnName));
+    }
+
+    @GetMapping("/orderBy/downgrade/queryColumnName/{queryColumnName}/val/{val}/columnName/{columnName}")
+    public Result orderByDown(@PathVariable String queryColumnName,@PathVariable double val,@PathVariable String columnName) {
+        return new Result(true,movieService.orderByDown(queryColumnName, val,columnName));
+    }
+
 }

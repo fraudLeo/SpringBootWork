@@ -72,4 +72,8 @@ public class MovieDaoTestCase {
 //        }
 
     }
+    @Test
+    void justATest() {
+
+    }
 }
