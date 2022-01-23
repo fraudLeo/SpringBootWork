@@ -11,11 +11,10 @@ public class AlltogetherApplication extends SpringBootServletInitializer {
     public static void main(String[] args) {
         SpringApplication.run(AlltogetherApplication.class, args);
     }
-
     @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+    protected SpringApplicationBuilder configure (SpringApplicationBuilder builder) {
+
         return builder.sources(AlltogetherApplication.class);
+
     }
-
-
 }
